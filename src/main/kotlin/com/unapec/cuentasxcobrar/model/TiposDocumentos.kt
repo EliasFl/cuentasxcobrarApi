@@ -8,7 +8,7 @@ import javax.persistence.Table
 @Entity
 data class TiposDocumentos (
         @Id @GeneratedValue val id: Long,
-        val descripcion: String,
-        val cuentaContable: Int,
-        val estado: Char
+        var descripcion: String,
+        var cuentaContable: Int,
+        var estado: Char
 )
