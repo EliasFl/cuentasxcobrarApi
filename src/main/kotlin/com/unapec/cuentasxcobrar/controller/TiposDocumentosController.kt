@@ -18,6 +18,7 @@ class TiposDocumentosController(
     fun findAll() = repository.findAll()
 
     @GetMapping("/tiposDocumentos/{id}")
+    @Throws(ResourceNotFoundException::class)
     fun findTipoDocumentoById(@PathVariable id: Long): ResponseEntity<TiposDocumentos> {
         val tiposDocumento = repository.findById(id).orElseThrow {
             ResourceNotFoundException("Tipo de documento no encontrado")
@@ -45,5 +46,19 @@ class TiposDocumentosController(
 
         val updatedTipoDocumento = repository.save(tipoDocumento)
         return ResponseEntity.ok(updatedTipoDocumento)
+    }
+
+    @DeleteMapping("tiposDocumentos/{id}")
+    @Throws(ResourceNotFoundException::class)
+    fun deleteTipoDocumento(@PathVariable(value = "id") id: Long): Map<String, Boolean> {
+        val tipoDocumento: TiposDocumentos = repository.findById(id).
+        orElseThrow {
+            ResourceNotFoundException("Tipo de documento no encontrado")
+        }
+
+        repository.delete(tipoDocumento)
+        val response: HashMap<String, Boolean> = HashMap<String, Boolean>()
+        response["deleted"] = true
+        return response
     }
 }
