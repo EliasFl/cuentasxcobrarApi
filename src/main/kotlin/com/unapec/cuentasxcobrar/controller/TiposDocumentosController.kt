@@ -18,7 +18,12 @@ class TiposDocumentosController(
     fun findAll() = repository.findAll()
 
     @GetMapping("/tiposDocumentos/{id}")
-    fun findTipoDocumentoById(@PathVariable id: Long) = repository.findById(id)
+    fun findTipoDocumentoById(@PathVariable id: Long): ResponseEntity<TiposDocumentos> {
+        val tiposDocumento = repository.findById(id).orElseThrow {
+            ResourceNotFoundException("Tipo de documento no encontrado")
+        }
+        return ResponseEntity.ok().body(tiposDocumento)
+    }
 
     @PostMapping("/tiposDocumentos")
     fun createTipoDocumento(@Valid @RequestBody tiposDocumento: TiposDocumentos) =
