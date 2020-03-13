@@ -1,9 +1,6 @@
 package com.unapec.cuentasxcobrar.model
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.CreationTimestamp
-import org.springframework.data.annotation.CreatedDate
-import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotBlank

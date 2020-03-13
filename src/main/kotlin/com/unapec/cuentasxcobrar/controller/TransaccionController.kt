@@ -1,6 +1,5 @@
 package com.unapec.cuentasxcobrar.controller
 
-import com.unapec.cuentasxcobrar.model.Cliente
 import com.unapec.cuentasxcobrar.model.Transaccion
 import com.unapec.cuentasxcobrar.repository.TransaccionRepository
 import org.springframework.beans.factory.annotation.Autowired
