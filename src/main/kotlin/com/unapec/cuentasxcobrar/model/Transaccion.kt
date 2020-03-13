@@ -1,6 +1,9 @@
 package com.unapec.cuentasxcobrar.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import org.hibernate.annotations.CreationTimestamp
 import org.springframework.data.annotation.CreatedDate
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
@@ -10,9 +13,10 @@ import javax.validation.constraints.Size
 data class Transaccion(
         @Id @GeneratedValue val id: Long,
         @NotBlank @Size(max = 2) var tipoMovimiento: String,
-        @ManyToOne @JoinColumn(name = "tipo_documento_id", table = "tipos_documentos") var tipoDocumento: TiposDocumentos,
+        var tipoDocumento: Long,
         var numeroDocumento: Int,
-        @Temporal(TemporalType.DATE) @CreatedDate val date: Date,
-        @ManyToOne @JoinColumn(name = "cliente_id", table = "cliente") var cliente: Cliente,
+        @CreationTimestamp @GeneratedValue @Column(name = "fecha")
+        val fecha: Date?,
+        var cliente: Long,
         var monto: Long
 )
